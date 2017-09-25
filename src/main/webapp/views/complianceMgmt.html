@@ -1,0 +1,26 @@
+<div class="tabContainer">
+<button class="btn topicButton" ng-click="addTopic('sm')">Add Topic</button><br>
+<table class="table table-fixed">
+	<thead>
+		<tr>
+			<th class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Topic</th>
+			<th class="col-xs-4 col-sm-4 col-md-4 col-lg-4">Sub-Topic</th>
+			<th class="col-xs-2 col-sm-2 col-md-2 col-lg-2 centerText">Total Questions</th>
+			<th class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Geo</th>			
+			<th class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="topic in topicData">
+			<td class="col-xs-3 col-sm-3 col-md-3 col-lg-3 textBreak">{{topic.topic_name}} </td>
+			<td class="col-xs-4 col-sm-4 col-md-4 col-lg-4 textBreak">{{topic.sub_topic_name}}</td>
+			<td class="col-xs-2 col-sm-2 col-md-2 col-lg-2 hyperlink centerText" ng-click="manageQuestions(topic)">{{topic.number_of_questions}}</td>
+			<td class="col-xs-2 col-sm-2 col-md-2 col-lg-2 hyperlink" ng-click="manageGeo(topic)">Manage Geo</td>
+			<td class="col-xs-1 col-sm-1 col-md-1 col-lg-1 hyperlink centerText" ng-click="modifyTopic(topic)">Modify</td>
+		</tr>
+	</tbody>
+</table>
+<div class="home_tabs" ng-if="topicData.length==0">
+	No Topic available.
+</div>
+</div>

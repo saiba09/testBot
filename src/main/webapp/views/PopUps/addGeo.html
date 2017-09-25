@@ -1,0 +1,25 @@
+<div ng-class="{'loaderOpacity': showLoader}">
+	<div class="modal-header popUpHeader">Add Geo</div>
+	<div class="modal-body">
+		<div class="form-group">
+			<label for="status">Country</label>
+			<select class="form-control" ng-model="geoCountry" ng-options="country.country_id as country.country_name for country in allCountries" ng-change="getStatesForSelectedCountry()">
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="status">State</label>
+			<select class="form-control" ng-model="geoState" ng-options="state.state_id as state.state_name for state in allStates">
+			</select>
+		</div>
+		
+		<div class="form-group">
+		  <label for="description">Law Description</label>
+		  <textarea class="form-control" rows="3" ng-model="description" id="description"></textarea>
+		</div>
+	</div>
+	<div class="modal-footer 0BodyPadding">
+	  <button ng-click="saveLawDescription()" class="btn popUpButton saveButton" ng-disabled="geoCountry==undefined || geoState == undefined || description==undefined">Save</button>
+	  <button ng-click="cancel()" class="btn popUpButton cancelButton" >Cancel</button>
+	</div>
+</div>

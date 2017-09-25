@@ -1,0 +1,24 @@
+<div ng-class="{'loaderOpacity': showLoader}">
+	<div class="modal-header popUpHeader">Modify Geo</div>
+	<div class="modal-body">
+		<div class="form-group">
+			<label for="status">Country</label>
+			<select class="form-control" ng-model="country" ng-options="country.country_id as country.country_name for country in countries" ng-change="getStatesForSelectedCountry()">
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="status">State</label>
+			<select class="form-control" ng-model="state" ng-options="state.state_id as state.state_name for state in states">
+			</select>
+		</div>
+		
+		<div class="form-group">
+		  <textarea class="form-control" rows="3" ng-model="lawDesc" id="description"></textarea>
+		</div>
+	</div>
+	<div class="modal-footer 0BodyPadding">
+	  <button ng-click="saveLawDescription()" class="btn popUpButton saveButton">Save</button>
+	  <button ng-click="cancel()" class="btn popUpButton cancelButton">Cancel</button>
+	</div>
+</div>

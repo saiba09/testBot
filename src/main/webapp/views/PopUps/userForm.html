@@ -1,0 +1,44 @@
+<div ng-class="{'loaderOpacity': showLoader}">
+	<div class="modal-header popUpHeader" ng-if="selectedAction=='add'">Add User</div>
+	<div class="modal-header popUpHeader" ng-if="selectedAction=='modify'">Modify User</div>
+	<div class="modal-body">
+		<form name="userForm">
+		<div class="form-group">
+		<label for="username">User Name</label>
+		<input type="text" class="form-control" ng-model="username" placeholder="Enter username">
+		</div>
+		<div class="form-group">
+			<label for="email">Email</label>
+			<input type="text" class="form-control" ng-model="email" placeholder="Enter email">
+            <span ng-if="emailError" class="error">Email id already exists.</span>
+		</div>
+		
+		<div class="form-group" ng-if="selectedAction=='modify'">
+			<label for="status">Status</label>
+			<select class="form-control" ng-options="status for status in statusList" ng-model="userStatus" ng-change="changeStatus(userStatus)">
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+					<label>Role</label>
+				</div>
+				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+					<label>
+						<input type="radio" ng-model="selectedrole" value="Admin" ng-change="selectRole()">Admin
+					 </label>
+					<label>
+						<input type="radio" ng-model="selectedrole" value="User" ng-change="selectRole()">User
+					</label>
+				</div>		
+			</div>
+		</div>	
+		</form>
+	</div>
+	<div class="modal-footer 0BodyPadding">
+	  <button ng-click="save()" class="btn popUpButton saveButton" ng-disabled="username==undefined || email==undefined || username == '' || email == '' || selectedrole == undefined" ng-if="selectedAction=='add'">Add User</button>
+	  <button ng-click="save()" class="btn popUpButton saveButton" ng-disabled="username==undefined || email==undefined || username == '' || email == '' || selectedrole == undefined" ng-if="selectedAction=='modify'">Modify User</button>
+	  <button ng-click="cancel()" class="btn popUpButton cancelButton" >Cancel</button>
+	</div>
+</div>

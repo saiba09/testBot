@@ -1,0 +1,108 @@
+<div class="tabContainer">
+	<div class="tabContainerLeft">
+		<div class="form-group">
+			<label for="topic">Topic</label>
+			<input type="text" class="form-control" id="topic" ng-model="topic" readonly=true>
+		</div>
+	
+		<div class="form-group">
+			<label for="subtopic">Sub-Topic</label>
+			<input type="text" class="form-control" id="subtopic" ng-model="subtopic" readonly=true>
+		</div>
+	
+		<div class="questionHeader">
+			System Generated Questions
+		</div>
+		<div class="questionDiv">
+			<div class="row" style="margin-bottom:10px" ng-repeat="sysQuestion in systemQuestions track by $index" ng-if="systemQuestions.length>0">
+				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+					{{$index+1}}. {{sysQuestion.question}}
+				</div>
+				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 hyperlink" style=" text-align: right;" ng-click="deleteQuestion(sysQuestion,'system')">
+					Delete
+				</div>
+			</div>
+			<div class="row" style="margin-bottom:10px" ng-if="systemQuestions.length==0">
+				No question available.
+			</div>
+		</div>
+		
+		<div class="questionHeader">
+			<div class="row">
+				<div class="col-lg-9">
+					User Generated Questions
+				</div>
+				<div class="col-lg-3">
+					<button class="btn questionButton" ng-click="addQuestion()">Add Question</button>	
+				</div>
+			</div>		
+		</div>
+		
+		<div class="questionDiv">
+			<div class="row" style="margin-bottom:10px" ng-repeat="usrQuestion in userQuestions track by $index" ng-if="userQuestions.length>0">
+				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+					{{$index+1}}. {{usrQuestion.question}}
+				</div>
+				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 hyperlink" style=" text-align: right;" ng-click="modifyQuestion(usrQuestion)">
+					Modify
+				</div>
+				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 hyperlink" style=" text-align: right;" ng-click="deleteQuestion(usrQuestion,'user')">
+					Delete
+				</div>
+			</div>
+			<div class="row" style="margin-bottom:10px" ng-if="userQuestions.length==0">
+				No question available.
+			</div>
+		</div>
+		
+		<!--<div class="row" style="margin-bottom:5px;" ng-repeat="usrQuestion in userQuestions track by $index" ng-if="userQuestions.length>0">
+			<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+				<input type="text" class="form-control" id="topic" value="{{$index+1}}. {{usrQuestion.question}}" ng-blur="modifyQuestion(value)">
+			</div>-
+			<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+					{{$index+1}}. {{usrQuestion.question}}
+				</div>
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 hyperlink" style=" text-align: right;" ng-click="deleteQuestion(usrQuestion,'user')">
+				Delete
+			</div>
+		</div>
+		<div class="questionDiv"  ng-if="userQuestions.length==0">
+			<div class="row" style="margin-bottom:10px">
+				No question available.
+			</div>
+		</div>-->
+	</div>
+</div>
+
+<script type="text/ng-template" id="addQuestionPopup">
+	<div ng-class="{'loaderOpacity': showLoader}">
+		<div class="modal-header popUpHeader">Add Question</div>
+		<div class="modal-body">
+			<div class="form-group">
+				<label for="topic">Question</label>
+				<input type="text" class="form-control" id="topic" ng-model="question" ng-change="enableSave()">
+			</div>
+		</div>
+		<div class="modal-footer 0BodyPadding">
+		  <button ng-click="save()" class="btn popUpButton saveButton" ng-disabled="disableSave" >Save</button>
+		  <button ng-click="closeThisDialog()" class="btn popUpButton cancelButton" >Cancel</button>
+		</div>
+	</div>
+</script>
+
+
+<script type="text/ng-template" id="modifyQuestionPopup">
+	<div ng-class="{'loaderOpacity': showLoader}">
+		<div class="modal-header popUpHeader">Modify Question</div>
+		<div class="modal-body">
+			<div class="form-group">
+				<label for="topic">Modified Question</label>
+				<input type="text" class="form-control" id="topic" ng-model="modifiedQuestion" ng-change="enableSave()">
+			</div>
+		</div>
+		<div class="modal-footer 0BodyPadding">
+		  <button ng-click="save()" class="btn popUpButton saveButton" ng-disabled="disableSave" >Save</button>
+		  <button ng-click="closeThisDialog()" class="btn popUpButton cancelButton" >Cancel</button>
+		</div>
+	</div>
+</script>
