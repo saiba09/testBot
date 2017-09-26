@@ -1,4 +1,4 @@
-package com.ey.admin;
+package com.ey.util;
 
 import java.util.Date;
 import java.util.logging.Logger;
