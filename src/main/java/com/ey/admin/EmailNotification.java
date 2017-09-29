@@ -29,7 +29,7 @@ public class EmailNotification extends HttpServlet {
 		try{
 			final String fromEmail = EmailProperty.getProperty("fromEmail");
 			final String password = EmailProperty.getProperty("password");
-		String receipent = "akshayMhapankar25@gmail.com";
+		String receipent = request.getParameter("receipent");
 		String messageType = request.getParameter("subject");
 		String messageBody = request.getParameter("body");
 		final String toEmail = receipent; 
